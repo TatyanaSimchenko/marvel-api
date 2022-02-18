@@ -35,6 +35,12 @@ state = {
     })
  }
 
+ onCharLoading = () => {
+     this.setState({
+         loading: true
+     })
+ }
+
  onError = () => {
      this.setState ({
          loading: false,
@@ -45,6 +51,7 @@ state = {
 
  updateChar = () => {
      const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+     this.onCharLoading();
      this.marvelService
      .getCharacter(id)
      .then(this.onCharLoaded)
@@ -75,7 +82,7 @@ state = {
                 <p className="randomchar__title">
                     Or choose another one
                 </p>
-                <button className="button button__main">
+                <button onClick={this.updateChar} className="button button__main">
                     <div className="inner">try it</div>
                 </button>
                 <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
